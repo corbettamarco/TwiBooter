@@ -1,18 +1,12 @@
-import React, { useState } from "react";
-import  {Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuItemOption,
-  MenuButtonProps
-} from "@chakra-ui/menu"
+import {
+  Menu,
+  MenuButton, MenuButtonProps, MenuDivider,
+  MenuGroup, MenuItem, MenuItemOption, MenuList, MenuOptionGroup
+} from "@chakra-ui/menu";
 
 const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
-  const { label, options, buttonProps } = props;
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const { label, options, buttonProps, selectedOptions,setSelectedOptions } = props;
+  
   return (
     <Menu closeOnSelect={false}>
       {({ onClose }) => (
@@ -96,6 +90,8 @@ export type MultiSelectMenuProps = {
   options: string[];
   onChange?: (selectedValues: string[]) => void;
   buttonProps?: MenuButtonProps;
+  selectedOptions: string[];
+  setSelectedOptions: (selectedOptions: string[])=>void;
 };
 
 export default MultiSelectMenu;

@@ -1,21 +1,18 @@
-import { forwardRef, useCallback } from "react";
-import type { ForwardedRef, KeyboardEvent, SyntheticEvent } from "react";
+import type {
+  InputProps, TagCloseButtonProps, TagLabelProps, TagProps
+} from "@chakra-ui/react";
 import {
   Input,
   Wrap,
   WrapItem,
   WrapItemProps,
-  WrapProps,
+  WrapProps
 } from "@chakra-ui/react";
-import type {
-  InputProps,
-  TagProps,
-  TagLabelProps,
-  TagCloseButtonProps,
-} from "@chakra-ui/react";
+import type { ForwardedRef, KeyboardEvent, SyntheticEvent } from "react";
+import { forwardRef, useCallback } from "react";
 
-import { maybeCall } from "./maybe";
 import type { MaybeFunc } from "./maybe";
+import { maybeCall } from "./maybe";
 import ChakraTagInputTag from "./Tag";
 
 type MaybeIsInputProps<P> = MaybeFunc<[isInput: boolean, index?: number], P>;
@@ -36,6 +33,7 @@ export type ChakraTagInputProps = InputProps & {
   tagLabelProps?: MaybeTagProps<TagLabelProps>;
   tagCloseButtonProps?: MaybeTagProps<TagCloseButtonProps>;
 };
+
 
 export default forwardRef(function ChakraTagInput(
   {

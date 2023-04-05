@@ -1,16 +1,14 @@
 import {
-    Flex,
-    Input,
-    NumberDecrementStepper,
-    NumberIncrementStepper,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper,
-    Select
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  Select,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { SyntheticEvent, useCallback, useState } from "react";
-import { useForm } from "react-hook-form";
+import { SyntheticEvent, useCallback, useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Searchtype } from "../types/SearchType";
 import ChakraTagInput from "./ChakraTagInput";
 import MultiSelectMenu from "./MultiselectMenu";
 
@@ -21,11 +19,12 @@ const FiltersBar = (props: PropTypes) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
+    setValue,
+  } = useForm<Searchtype>();
+
   const [tags, setTags] = useState<string[] | undefined>([]);
-  const [languages, setLanguages] = useState<string[] | undefined>([]);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
   const handleTagsChange = useCallback(
     (event: SyntheticEvent, tags: string[]) => {
@@ -34,47 +33,67 @@ const FiltersBar = (props: PropTypes) => {
     []
   );
 
-  const handleLanguagesChange = useCallback(
-    (event: SyntheticEvent, languages: string[]) => {
-      setLanguages(languages);
-    },
-    []
-  );
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit: SubmitHandler<Searchtype> = (values) => {
+    console.log(values);
+  };
 
-  const options = ["IT", "EN", "FR"];
+  const langOptions = ["IT", "EN", "FR"];
+
+  useEffect(() => {
+    setValue("tags", tags);
+    setValue("languages", selectedLanguages);
+  }, [selectedLanguages, setValue, tags]);
 
   return (
     <Flex>
-      <form onSubmit={() => handleSubmit(onSubmit)}>
-        <Input
-          defaultValue="Search a Game"
-          {...register("game", { required: true })}
-        />
-
-        <NumberInput min={1} max={100} defaultValue="Number of Results">
-          <NumberInputField {...register("limit", { required: true })} />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-
-        <ChakraTagInput
-          tags={tags}
-          onTagsChange={handleTagsChange}
-          {...register("tags")}
-        />
-
-        <Select placeholder="Periodo" {...register("filter")}>
-          <option value="LAST_DAY">Oggi</option>
-          <option value="LAST_WEEK">Ultima Settimana</option>
-          <option value="ALL_TIME">Sempre</option>
-        </Select>
-
-       
-
-        <MultiSelectMenu label="Lingue" options={options} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl isInvalid={errors.game ? true : false}>
+          <Select
+            defaultValue="VALORANT"
+            placeholder="Select a Game"
+            {...register("game")}
+          >
+            <option value="VALORANT"> Valorant </option>
+          </Select>
+          <FormErrorMessage>
+            {errors.game && errors.game.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl>
+          <Select defaultValue={10} {...register("limit")}>
+            <option value={10}> 10 </option>
+            <option value={20}> 20 </option>
+            <option value={30}> 30 </option>
+          </Select>
+          <FormErrorMessage>
+            {errors.limit && errors.limit.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl>
+          <ChakraTagInput tags={tags} onTagsChange={handleTagsChange} />
+          <FormErrorMessage>
+            {errors.limit && errors.limit.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl>
+          <Select defaultValue={"ALL_TIME"} placeholder="Periodo" {...register("filter")}>
+            <option value="LAST_DAY">Oggi</option>
+            <option value="LAST_WEEK">Ultima Settimana</option>
+            <option value="ALL_TIME">Sempre</option>
+          </Select>
+          <FormErrorMessage>
+            {errors.filter && errors.filter.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl>
+          <div {...register("languages")}>
+            <MultiSelectMenu selectedOptions={selectedLanguages} setSelectedOptions={setSelectedLanguages} label="Lingue" options={langOptions} />
+          </div>
+          <Button type="submit"> Search </Button>
+          <FormErrorMessage>
+            {errors.languages && errors.languages.message}
+          </FormErrorMessage>
+        </FormControl>
       </form>
     </Flex>
   );
