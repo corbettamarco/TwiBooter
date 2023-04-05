@@ -16,20 +16,21 @@ const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
             // @ts-ignore <MenuButton> does have a 'type' prop because it is just a button. This is to make sure clicking this doesn't submit any forms.
             type="button"
             /* eslint-enable @typescript-eslint/ban-ts-comment */
-            backgroundColor={selectedOptions.length ? "purple.200" : "white"}
-            color={selectedOptions.length ? "purple.500" : "gray.600"}
-            borderColor={selectedOptions.length ? "purple.200" : "gray.300"}
+            backgroundColor={selectedOptions.length ? "teal.200" : "white"}
+            color={selectedOptions.length ? "black" : "teal.500"}
+            borderColor={selectedOptions.length ? "gray.300" : "teal.200"}
             borderWidth={1}
-            p={2}
+            p={1}
             px={4}
-            borderRadius="25px"
+            borderRadius="md"
             _focus={{
               outline: "none"
             }}
             {...buttonProps}
+            w="8rem"
           >
             {`${label}${
-              selectedOptions.length > 0 ? ` (${selectedOptions.length})` : ""
+              selectedOptions.length > 0 ? ` (${selectedOptions.length})` : " (0)"
             }`}
           </MenuButton>
           <MenuList>

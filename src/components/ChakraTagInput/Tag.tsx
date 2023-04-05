@@ -32,7 +32,7 @@ export default function ChakraTagInputTag({
     [onRemove, onTagCloseButtonClick]
   )
   return (
-    <Tag {...props}>
+    <Tag maxW={"5rem"} textOverflow={"ellipsis"} {...props}>
       <TagLabel {...tagLabelProps}>{children}</TagLabel>
       <TagCloseButton {...tagCloseButtonProps} onClick={handleClickTagCloseButton} />
     </Tag>

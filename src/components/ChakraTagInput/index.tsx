@@ -108,9 +108,9 @@ export default forwardRef(function ChakraTagInput(
   );
 
   return (
-    <Wrap align="center" {...wrapProps}>
+    <Wrap w="12rem" align="center" {...wrapProps}>
       <WrapItem flexGrow={1} {...maybeCall(wrapItemProps, true, tags.length)}>
-        <Input {...props} onKeyDown={handleKeyDown} ref={ref} />
+        <Input {...props} onKeyDown={handleKeyDown} ref={ref} placeholder={"Add Tags..."}/>
       </WrapItem>
       {tags.map((tag, index) => (
         <WrapItem {...maybeCall(wrapItemProps, false, index)} key={index}>
