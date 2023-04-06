@@ -2,6 +2,7 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
+  FormLabel,
   Select,
   Stack
 } from "@chakra-ui/react";
@@ -51,11 +52,12 @@ const FiltersBar = (props: PropTypes) => {
         h="90vh"
         rounded={"lg"}
         justifyContent={"left"}
-        gap={"2rem"}
+        gap={"1rem"}
         bgColor={"purple.400"}
         p="1rem"
       >
         <FormControl isInvalid={errors.game ? true : false}>
+        <FormLabel fontWeight={"bold"}>Game</FormLabel>
           <Select
             placeholder="Select a Game"
             {...register("game")}
@@ -69,7 +71,13 @@ const FiltersBar = (props: PropTypes) => {
           </FormErrorMessage>
         </FormControl>
         <FormControl>
-          <Select defaultValue={10} {...register("limit")}  bgColor={"white"} shadow={"lg"}>
+        <FormLabel fontWeight={"bold"}>Number of Results</FormLabel>
+          <Select
+            defaultValue={10}
+            {...register("limit")}
+            bgColor={"white"}
+            shadow={"lg"}
+          >
             <option value={10}> 10 </option>
             <option value={20}> 20 </option>
             <option value={30}> 30 </option>
@@ -79,38 +87,42 @@ const FiltersBar = (props: PropTypes) => {
           </FormErrorMessage>
         </FormControl>{" "}
         <FormControl>
-          <ChakraTagInput tags={tags} onTagsChange={handleTagsChange} />
-          <FormErrorMessage>
-            {errors.limit && errors.limit.message}
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl>
+          <FormLabel fontWeight={"bold"}>Filter</FormLabel>
           <Select
             defaultValue={"ALL_TIME"}
-            placeholder="Periodo"
             {...register("filter")}
-            bgColor={"white"} shadow={"lg"}
+            bgColor={"white"}
+            shadow={"lg"}
           >
-            <option value="LAST_DAY">Oggi</option>
-            <option value="LAST_WEEK">Ultima Settimana</option>
-            <option value="ALL_TIME">Sempre</option>
+            <option value="LAST_DAY">Last Day</option>
+            <option value="LAST_WEEK">Last Week</option>
+            <option value="ALL_TIME">All Time</option>
           </Select>
           <FormErrorMessage>
             {errors.filter && errors.filter.message}
           </FormErrorMessage>
         </FormControl>
-        <FormControl >
+        <FormControl>
+          <FormLabel fontWeight={"bold"}>Languages</FormLabel>
+
           <div {...register("languages")}>
             <MultiSelectMenu
               selectedOptions={selectedLanguages}
               setSelectedOptions={setSelectedLanguages}
-              label="Lingue"
+              label="Languages"
               options={langOptions}
             />
           </div>
 
           <FormErrorMessage>
             {errors.languages && errors.languages.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl>
+        <FormLabel fontWeight={"bold"}>Tags</FormLabel>
+          <ChakraTagInput tags={tags} onTagsChange={handleTagsChange} />
+          <FormErrorMessage>
+            {errors.limit && errors.limit.message}
           </FormErrorMessage>
         </FormControl>
         <Button ml="3.2rem" type="submit" bgColor={"yellow"}>

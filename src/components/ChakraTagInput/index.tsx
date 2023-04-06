@@ -119,7 +119,7 @@ export default forwardRef(function ChakraTagInput(
           {...props}
           onKeyDown={handleKeyDown}
           ref={ref}
-          placeholder={"Add Tags..."}
+          placeholder={"Add Tags and press Enter..."}
         />
       </WrapItem>
       <SimpleGrid
@@ -131,6 +131,10 @@ export default forwardRef(function ChakraTagInput(
         overflowY={"scroll"}
         p=".5rem"
         className="tagsGrid"
+        borderColor={"black"}
+        borderWidth={"2px"}
+        rounded={"lg"}
+        visibility={tags.length ? "visible" : "hidden"}
       >
         {tags.map((tag, index) => (
           <Box

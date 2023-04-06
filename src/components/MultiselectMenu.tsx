@@ -30,7 +30,7 @@ const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
             w="full"
             h="2.5rem"
             shadow={"lg"}
-            mb="5rem"
+           
           >
             {`${label}${
               selectedOptions.length > 0 ? ` (${selectedOptions.length})` : " (0)"
