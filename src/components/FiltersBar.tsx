@@ -3,6 +3,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Heading,
   Select,
   Stack
 } from "@chakra-ui/react";
@@ -47,14 +48,15 @@ const FiltersBar = (props: PropTypes) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <Heading verticalAlign={"center"} fontStyle={"italic"} textColor={"yellow"} textAlign={"center"} pt="0">Reel Maker</Heading>
       <Stack
-        mt="2rem"
+        mt=".5rem"
         h="90vh"
         rounded={"lg"}
         justifyContent={"left"}
         gap={"1rem"}
         bgColor={"purple.400"}
-        p="1rem"
+        p=".5rem"
       >
         <FormControl isInvalid={errors.game ? true : false}>
         <FormLabel fontWeight={"bold"}>Game</FormLabel>
