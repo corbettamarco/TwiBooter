@@ -8,7 +8,7 @@ const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
   const { label, options, buttonProps, selectedOptions,setSelectedOptions } = props;
   
   return (
-    <Menu closeOnSelect={false}>
+    <Menu closeOnSelect={false} >
       {({ onClose }) => (
         <>
           <MenuButton
@@ -27,14 +27,17 @@ const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
               outline: "none"
             }}
             {...buttonProps}
-            w="8rem"
+            w="full"
+            h="2.5rem"
+            shadow={"lg"}
+            mb="5rem"
           >
             {`${label}${
               selectedOptions.length > 0 ? ` (${selectedOptions.length})` : " (0)"
             }`}
           </MenuButton>
-          <MenuList>
-            <MenuGroup title={undefined}>
+          <MenuList >
+            <MenuGroup title={undefined}> 
               <MenuItem
                 onClick={() => {
                   setSelectedOptions([]);
@@ -48,6 +51,7 @@ const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
             </MenuGroup>
             <MenuDivider />
             <MenuOptionGroup
+            
               title={undefined}
               defaultValue={selectedOptions}
               type="checkbox"

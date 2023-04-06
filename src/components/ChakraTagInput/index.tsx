@@ -1,12 +1,15 @@
-import type {
-  InputProps, TagCloseButtonProps, TagLabelProps, TagProps
-} from "@chakra-ui/react";
 import {
+  Box,
   Input,
+  InputProps,
+  SimpleGrid,
+  TagCloseButtonProps,
+  TagLabelProps,
+  TagProps,
   Wrap,
   WrapItem,
   WrapItemProps,
-  WrapProps
+  WrapProps,
 } from "@chakra-ui/react";
 import type { ForwardedRef, KeyboardEvent, SyntheticEvent } from "react";
 import { forwardRef, useCallback } from "react";
@@ -14,6 +17,7 @@ import { forwardRef, useCallback } from "react";
 import type { MaybeFunc } from "./maybe";
 import { maybeCall } from "./maybe";
 import ChakraTagInputTag from "./Tag";
+import "./styles.css"
 
 type MaybeIsInputProps<P> = MaybeFunc<[isInput: boolean, index?: number], P>;
 type MaybeTagProps<P> = MaybeFunc<[tag: string, index?: number], P>;
@@ -33,7 +37,6 @@ export type ChakraTagInputProps = InputProps & {
   tagLabelProps?: MaybeTagProps<TagLabelProps>;
   tagCloseButtonProps?: MaybeTagProps<TagCloseButtonProps>;
 };
-
 
 export default forwardRef(function ChakraTagInput(
   {
@@ -108,24 +111,46 @@ export default forwardRef(function ChakraTagInput(
   );
 
   return (
-    <Wrap w="12rem" align="center" {...wrapProps}>
+    <Wrap align="center" {...wrapProps} >
       <WrapItem flexGrow={1} {...maybeCall(wrapItemProps, true, tags.length)}>
-        <Input {...props} onKeyDown={handleKeyDown} ref={ref} placeholder={"Add Tags..."}/>
+        <Input
+          bgColor={"white"}
+          shadow={"lg"}
+          {...props}
+          onKeyDown={handleKeyDown}
+          ref={ref}
+          placeholder={"Add Tags..."}
+        />
       </WrapItem>
-      {tags.map((tag, index) => (
-        <WrapItem {...maybeCall(wrapItemProps, false, index)} key={index}>
-          <ChakraTagInputTag
-            onRemove={handleRemoveTag(index)}
-            tagLabelProps={maybeCall(tagLabelProps, tag, index)}
-            tagCloseButtonProps={maybeCall(tagCloseButtonProps, tag, index)}
-            colorScheme={props.colorScheme}
-            size={props.size}
-            {...maybeCall(tagProps, tag, index)}
+      <SimpleGrid
+        px=".2rem"
+        gap=".2rem"
+        columns={2}
+        w="full"
+        h="6rem"
+        overflowY={"scroll"}
+        p=".5rem"
+        className="tagsGrid"
+      >
+        {tags.map((tag, index) => (
+          <Box
+            {...maybeCall(wrapItemProps, false, index)}
+            key={index}
+            mb="0"
           >
-            {tag}
-          </ChakraTagInputTag>
-        </WrapItem>
-      ))}
+            <ChakraTagInputTag
+              onRemove={handleRemoveTag(index)}
+              tagLabelProps={maybeCall(tagLabelProps, tag, index)}
+              tagCloseButtonProps={maybeCall(tagCloseButtonProps, tag, index)}
+              colorScheme={props.colorScheme}
+              size={props.size}
+              {...maybeCall(tagProps, tag, index)}
+            >
+              {tag}
+            </ChakraTagInputTag>
+          </Box>
+        ))}
+      </SimpleGrid>
     </Wrap>
   );
 });
