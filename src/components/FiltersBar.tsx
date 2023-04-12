@@ -5,19 +5,23 @@ import {
   FormLabel,
   Heading,
   Select,
-  Stack
+  Stack,
 } from "@chakra-ui/react";
-import PropTypes from "prop-types";
 import { SyntheticEvent, useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Searchtype } from "../types/SearchType";
 import ChakraTagInput from "./ChakraTagInput";
 import MultiSelectMenu from "./MultiselectMenu";
+import { ClipType } from "../types/ClipType";
+import axios from "axios";
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-type PropTypes = {};
 const langOptions = ["IT", "EN", "FR"];
-const FiltersBar = (props: PropTypes) => {
+type FiltersBarType = {
+  clips: ClipType[];
+  setClips: () => void;
+};
+const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
   const {
     register,
     handleSubmit,
@@ -39,8 +43,16 @@ const FiltersBar = (props: PropTypes) => {
 
   const onSubmit: SubmitHandler<Searchtype> = (values) => {
     console.log(values);
+    console.log(getData(values));
   };
 
+  const getData = async (values: Searchtype) => {
+    const data = await axios.post(
+      "https://tycq404qtg.execute-api.us-east-1.amazonaws.com/test/api",
+      values
+    );
+    console.log(data);
+  };
   useEffect(() => {
     setValue("tags", tags);
     setValue("languages", selectedLanguages);
@@ -48,7 +60,15 @@ const FiltersBar = (props: PropTypes) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Heading verticalAlign={"center"} fontStyle={"italic"} textColor={"yellow"} textAlign={"center"} pt="0">Reel Maker</Heading>
+      <Heading
+        verticalAlign={"center"}
+        fontStyle={"italic"}
+        textColor={"yellow"}
+        textAlign={"center"}
+        pt="0"
+      >
+        Reel Maker
+      </Heading>
       <Stack
         mt=".5rem"
         h="90vh"
@@ -59,7 +79,7 @@ const FiltersBar = (props: PropTypes) => {
         p=".5rem"
       >
         <FormControl isInvalid={errors.game ? true : false}>
-        <FormLabel fontWeight={"bold"}>Game</FormLabel>
+          <FormLabel fontWeight={"bold"}>Game</FormLabel>
           <Select
             placeholder="Select a Game"
             {...register("game")}
@@ -73,7 +93,7 @@ const FiltersBar = (props: PropTypes) => {
           </FormErrorMessage>
         </FormControl>
         <FormControl>
-        <FormLabel fontWeight={"bold"}>Number of Results</FormLabel>
+          <FormLabel fontWeight={"bold"}>Number of Results</FormLabel>
           <Select
             defaultValue={10}
             {...register("limit")}
@@ -121,7 +141,7 @@ const FiltersBar = (props: PropTypes) => {
           </FormErrorMessage>
         </FormControl>
         <FormControl>
-        <FormLabel fontWeight={"bold"}>Tags</FormLabel>
+          <FormLabel fontWeight={"bold"}>Tags</FormLabel>
           <ChakraTagInput tags={tags} onTagsChange={handleTagsChange} />
           <FormErrorMessage>
             {errors.limit && errors.limit.message}
