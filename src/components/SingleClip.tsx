@@ -22,7 +22,7 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
       flexDirection={"column"}
       justify={"flex-end"}
       backgroundColor={"#1D2025"}
-      pb=".5rem"
+      pb={[".5rem",".5rem","0","0","0"]}
     >
       <HStack>
         <Image
