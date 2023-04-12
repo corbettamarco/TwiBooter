@@ -1,12 +1,12 @@
 import { CalendarIcon, TimeIcon } from "@chakra-ui/icons";
 import {
-    Flex,
-    HStack,
-    Heading,
-    Image,
-    Spacer,
-    Stack,
-    Text
+  Flex,
+  HStack,
+  Heading,
+  Image,
+  Spacer,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
 import { ClipType } from "../types/ClipType";
 
@@ -20,15 +20,17 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
       shadow={"xl"}
       rounded={"md"}
       flexDirection={"column"}
-      justify={"flex-end"}
-      backgroundColor={"#1D2025"}
-      pb={[".5rem",".5rem","0","0","0"]}
+      backgroundColor={"black"}
+      pb={[".5rem", ".5rem", "0", "0", "0"]}
+      ringColor={"teal.200"}
+      ring={"2px"}
+      h={["25rem", "25rem", "16rem", "16rem", "16rem"]}
     >
       <HStack>
         <Image
           rounded={"md"}
           boxSize={"3rem"}
-          src={clip.streamer.profileImageUrl}
+          src={clip.streamer.profileImageURL}
         ></Image>
         <Text fontWeight={"bold"} textColor={"white"}>
           {clip.streamer.displayName}
@@ -48,11 +50,24 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
         <Image
           rounded={"md"}
           src={clip.anteprima_clip}
-          w={["100%","100%","60%","60%","60%"]}
-          
+          w={["100%", "100%", "60%", "60%", "60%"]}
         ></Image>
-        <Flex ml={[".5rem",".5rem",".5rem","0","0"]} w="inherit" flexDirection={"column"}>
-          <Heading fontSize={"lg"} color={"white"} textTransform={"uppercase"}>
+        <Flex
+          ml={[".5rem", ".5rem", ".5rem", "0", "0"]}
+          w="inherit"
+          flexDirection={"column"}
+          overflow={"hidden"}
+        >
+          <Heading
+            h={["4rem", "4rem", "8rem", "8rem", "8rem"]}
+            mr=".2rem"
+            fontSize={"lg"}
+            color={"white"}
+            textTransform={"uppercase"}
+            textOverflow={"ellipsis"}
+            overflow={"hidden"}
+            w="inherit"
+          >
             {clip.titolo}
           </Heading>
           <Stack
@@ -66,7 +81,7 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
               {clip.data_creazione.split("T")[0]}
             </Text>
             <Text>
-              <TimeIcon  style={{ marginRight: ".5rem" }} />
+              <TimeIcon style={{ marginRight: ".5rem" }} />
               {clip.data_creazione.split("T")[1].replace("Z", "")}
             </Text>
           </Stack>

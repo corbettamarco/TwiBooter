@@ -5,23 +5,22 @@ import {
   SidebarSection,
   SidebarToggleButton,
 } from "@saas-ui/sidebar";
-import FiltersBar from "./components/FiltersBar";
-import { ClipList } from "./components/ClipList";
 import { useState } from "react";
+import { ClipList } from "./components/ClipList";
+import FiltersBar from "./components/FiltersBar";
 import { ClipType } from "./types/ClipType";
-import { clipsMock } from "./clipsMock";
 
 export const App = () => {
-  const [clips,setClips] = useState<ClipType[]>(clipsMock);
+  const [clips,setClips] = useState<ClipType[]>([] as ClipType[]);
 
   return(
   <SaasProvider>
     <AppShell
       sidebar={
-        <Sidebar p="0" h="100vh" backgroundColor={"black"}>
+        <Sidebar p="0" h="100%" minH="100vh" backgroundColor={"black"} borderRightWidth={"0"}>
           <SidebarSection aria-label="Main">
             <NavGroup p=".5rem">
-              <FiltersBar clips={clips} setClips={()=>setClips}/>
+              <FiltersBar clips={clips} setClips={setClips}/>
             </NavGroup>
           </SidebarSection>
           <SidebarToggleButton  bgColor={"purple.300"} ml=".2rem"/>

@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControl,
   FormErrorMessage,
@@ -19,7 +20,7 @@ import axios from "axios";
 const langOptions = ["IT", "EN", "FR"];
 type FiltersBarType = {
   clips: ClipType[];
-  setClips: () => void;
+  setClips: (data: ClipType[]) => void;
 };
 const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
   const {
@@ -51,21 +52,21 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
       "https://tycq404qtg.execute-api.us-east-1.amazonaws.com/test/api",
       values
     );
-    console.log(data);
+    setClips(await data.data);
   };
   useEffect(() => {
     setValue("tags", tags);
     setValue("languages", selectedLanguages);
   }, [selectedLanguages, setValue, tags]);
 
-  return (
+  return (<Box >
     <form onSubmit={handleSubmit(onSubmit)}>
       <Heading
         verticalAlign={"center"}
         fontStyle={"italic"}
         textColor={"yellow"}
         textAlign={"center"}
-        pt="0"
+        pt=".5rem"
       >
         Reel Maker
       </Heading>
@@ -96,7 +97,7 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
           <FormLabel fontWeight={"bold"}>Number of Results</FormLabel>
           <Select
             defaultValue={10}
-            {...register("limit")}
+            {...register("limit", { valueAsNumber: true })}
             bgColor={"white"}
             shadow={"lg"}
           >
@@ -151,7 +152,7 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
           Search
         </Button>
       </Stack>
-    </form>
+    </form></Box>
   );
 };
 

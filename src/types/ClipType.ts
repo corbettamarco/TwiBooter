@@ -12,5 +12,5 @@ type StreamerType = {
     id : number,
     login: string,
     displayName: string,
-    profileImageUrl: string
+    profileImageURL: string
 }
