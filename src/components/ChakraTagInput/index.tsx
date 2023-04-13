@@ -17,7 +17,7 @@ import { forwardRef, useCallback } from "react";
 import type { MaybeFunc } from "./maybe";
 import { maybeCall } from "./maybe";
 import ChakraTagInputTag from "./Tag";
-import "./styles.css"
+import "./styles.css";
 
 type MaybeIsInputProps<P> = MaybeFunc<[isInput: boolean, index?: number], P>;
 type MaybeTagProps<P> = MaybeFunc<[tag: string, index?: number], P>;
@@ -111,15 +111,16 @@ export default forwardRef(function ChakraTagInput(
   );
 
   return (
-    <Wrap align="center" {...wrapProps} >
+    <Wrap align="center" {...wrapProps}>
       <WrapItem flexGrow={1} {...maybeCall(wrapItemProps, true, tags.length)}>
         <Input
-          bgColor={"gray.800"}
+          bgColor={"gray.700"}
           shadow={"lg"}
           {...props}
           onKeyDown={handleKeyDown}
           ref={ref}
           placeholder={"Add Tags and press Enter..."}
+          _placeholder={{textColor:"purple.500"}}
         />
       </WrapItem>
       <SimpleGrid
@@ -137,11 +138,7 @@ export default forwardRef(function ChakraTagInput(
         visibility={tags.length ? "visible" : "hidden"}
       >
         {tags.map((tag, index) => (
-          <Box
-            {...maybeCall(wrapItemProps, false, index)}
-            key={index}
-            mb="0"
-          >
+          <Box {...maybeCall(wrapItemProps, false, index)} key={index} mb="0">
             <ChakraTagInputTag
               onRemove={handleRemoveTag(index)}
               tagLabelProps={maybeCall(tagLabelProps, tag, index)}

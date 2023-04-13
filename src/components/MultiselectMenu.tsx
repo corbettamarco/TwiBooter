@@ -1,14 +1,21 @@
 import {
   Menu,
-  MenuButton, MenuButtonProps, MenuDivider,
-  MenuGroup, MenuItem, MenuItemOption, MenuList, MenuOptionGroup
+  MenuButton,
+  MenuButtonProps,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
 } from "@chakra-ui/menu";
 
 const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
-  const { label, options, buttonProps, selectedOptions,setSelectedOptions } = props;
-  
+  const { label, options, buttonProps, selectedOptions, setSelectedOptions } =
+    props;
+
   return (
-    <Menu closeOnSelect={false} >
+    <Menu closeOnSelect={false}>
       {({ onClose }) => (
         <>
           <MenuButton
@@ -24,20 +31,21 @@ const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
             px={4}
             borderRadius="md"
             _focus={{
-              outline: "none"
+              outline: "none",
             }}
             {...buttonProps}
             w="full"
             h="2.5rem"
             shadow={"lg"}
-           
           >
             {`${label}${
-              selectedOptions.length > 0 ? ` (${selectedOptions.length})` : " (0)"
+              selectedOptions.length > 0
+                ? ` (${selectedOptions.length})`
+                : " (0)"
             }`}
           </MenuButton>
-          <MenuList >
-            <MenuGroup title={undefined}> 
+          <MenuList textColor={"#9146FF"}>
+            <MenuGroup title={undefined}>
               <MenuItem
                 onClick={() => {
                   setSelectedOptions([]);
@@ -51,7 +59,6 @@ const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
             </MenuGroup>
             <MenuDivider />
             <MenuOptionGroup
-            
               title={undefined}
               defaultValue={selectedOptions}
               type="checkbox"
@@ -96,7 +103,7 @@ export type MultiSelectMenuProps = {
   onChange?: (selectedValues: string[]) => void;
   buttonProps?: MenuButtonProps;
   selectedOptions: string[];
-  setSelectedOptions: (selectedOptions: string[])=>void;
+  setSelectedOptions: (selectedOptions: string[]) => void;
 };
 
 export default MultiSelectMenu;
