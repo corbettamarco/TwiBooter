@@ -16,9 +16,9 @@ const MultiSelectMenu = (props: MultiSelectMenuProps): JSX.Element => {
             // @ts-ignore <MenuButton> does have a 'type' prop because it is just a button. This is to make sure clicking this doesn't submit any forms.
             type="button"
             /* eslint-enable @typescript-eslint/ban-ts-comment */
-            backgroundColor={selectedOptions.length ? "teal.200" : "white"}
-            color={selectedOptions.length ? "black" : "teal.500"}
-            borderColor={selectedOptions.length ? "gray.300" : "teal.200"}
+            backgroundColor={selectedOptions.length ? "#9146FF" : "gray.800"}
+            color={selectedOptions.length ? "black" : "#9146FF"}
+            borderColor={selectedOptions.length ? "gray.300" : "#9146FF"}
             borderWidth={1}
             p={1}
             px={4}

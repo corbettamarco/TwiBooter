@@ -17,6 +17,8 @@ type VideoModalProp = {
   onClose: () => void;
 };
 
+const amplify = "";
+
 export const VideoModal = ({
   clip,
   isOpen,
@@ -31,7 +33,7 @@ export const VideoModal = ({
           <ModalHeader>{clip.titolo}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <video src={clip.url} />
+            <iframe src={`${clip.url}&parent=${amplify}`}/>
           </ModalBody>
 
           <ModalFooter>

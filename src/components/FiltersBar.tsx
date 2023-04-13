@@ -21,8 +21,9 @@ const langOptions = ["IT", "EN", "FR"];
 type FiltersBarType = {
   clips: ClipType[];
   setClips: (data: ClipType[]) => void;
+  setLoading: (data: boolean) => void;
 };
-const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
+const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
   const {
     register,
     handleSubmit,
@@ -43,8 +44,8 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
   );
 
   const onSubmit: SubmitHandler<Searchtype> = (values) => {
-    console.log(values);
-    console.log(getData(values));
+    setLoading(true);
+    getData(values);
   };
 
   const getData = async (values: Searchtype) => {
@@ -52,8 +53,10 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
       "https://tycq404qtg.execute-api.us-east-1.amazonaws.com/test/api",
       values
     );
+    setLoading(false);
     setClips(await data.data);
   };
+
   useEffect(() => {
     setValue("tags", tags);
     setValue("languages", selectedLanguages);
@@ -64,11 +67,11 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
       <Heading
         verticalAlign={"center"}
         fontStyle={"italic"}
-        textColor={"yellow"}
+        textColor={"#9146FF"}
         textAlign={"center"}
         pt=".5rem"
       >
-        Reel Maker
+        TwiBooter
       </Heading>
       <Stack
         mt=".5rem"
@@ -76,15 +79,15 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
         rounded={"lg"}
         justifyContent={"left"}
         gap={"1rem"}
-        bgColor={"purple.400"}
-        p=".5rem"
+        p=".8rem"
       >
-        <FormControl isInvalid={errors.game ? true : false}>
+        <FormControl isInvalid={errors.game ? true : false} isRequired>
           <FormLabel fontWeight={"bold"}>Game</FormLabel>
           <Select
             placeholder="Select a Game"
             {...register("game")}
-            bgColor={"white"}
+            bgColor={"gray.800"}
+            textColor={"white"}
             shadow={"lg"}
           >
             <option value="VALORANT"> Valorant </option>
@@ -93,12 +96,13 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
             {errors.game && errors.game.message}
           </FormErrorMessage>
         </FormControl>
-        <FormControl>
+        <FormControl isRequired>
           <FormLabel fontWeight={"bold"}>Number of Results</FormLabel>
           <Select
             defaultValue={10}
             {...register("limit", { valueAsNumber: true })}
-            bgColor={"white"}
+            bgColor={"gray.800"}
+            textColor={"white"}
             shadow={"lg"}
           >
             <option value={10}> 10 </option>
@@ -109,12 +113,13 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
             {errors.limit && errors.limit.message}
           </FormErrorMessage>
         </FormControl>{" "}
-        <FormControl>
+        <FormControl isRequired>
           <FormLabel fontWeight={"bold"}>Filter</FormLabel>
           <Select
             defaultValue={"ALL_TIME"}
             {...register("filter")}
-            bgColor={"white"}
+            bgColor={"gray.800"}
+            textColor={"white"}
             shadow={"lg"}
           >
             <option value="LAST_DAY">Last Day</option>
@@ -125,7 +130,7 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
             {errors.filter && errors.filter.message}
           </FormErrorMessage>
         </FormControl>
-        <FormControl>
+        <FormControl isRequired>
           <FormLabel fontWeight={"bold"}>Languages</FormLabel>
 
           <div {...register("languages")}>
@@ -148,7 +153,7 @@ const FiltersBar = ({ clips, setClips }: FiltersBarType) => {
             {errors.limit && errors.limit.message}
           </FormErrorMessage>
         </FormControl>
-        <Button ml="3.2rem" type="submit" bgColor={"yellow"}>
+        <Button ml="3.2rem" type="submit" bgColor={"#9146FF"}>
           Search
         </Button>
       </Stack>

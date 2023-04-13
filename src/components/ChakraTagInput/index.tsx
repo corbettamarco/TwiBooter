@@ -114,7 +114,7 @@ export default forwardRef(function ChakraTagInput(
     <Wrap align="center" {...wrapProps} >
       <WrapItem flexGrow={1} {...maybeCall(wrapItemProps, true, tags.length)}>
         <Input
-          bgColor={"white"}
+          bgColor={"gray.800"}
           shadow={"lg"}
           {...props}
           onKeyDown={handleKeyDown}
@@ -131,7 +131,7 @@ export default forwardRef(function ChakraTagInput(
         overflowY={"scroll"}
         p=".5rem"
         className="tagsGrid"
-        borderColor={"black"}
+        borderColor={"#9146FF"}
         borderWidth={"2px"}
         rounded={"lg"}
         visibility={tags.length ? "visible" : "hidden"}
@@ -147,6 +147,7 @@ export default forwardRef(function ChakraTagInput(
               tagLabelProps={maybeCall(tagLabelProps, tag, index)}
               tagCloseButtonProps={maybeCall(tagCloseButtonProps, tag, index)}
               colorScheme={props.colorScheme}
+              bgColor={"#9146FF"}
               size={props.size}
               {...maybeCall(tagProps, tag, index)}
             >

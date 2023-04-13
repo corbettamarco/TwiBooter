@@ -12,21 +12,22 @@ import { ClipType } from "./types/ClipType";
 
 export const App = () => {
   const [clips,setClips] = useState<ClipType[]>([] as ClipType[]);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   return(
   <SaasProvider>
     <AppShell
       sidebar={
-        <Sidebar p="0" h="100%" minH="100vh" backgroundColor={"black"} borderRightWidth={"0"}>
+        <Sidebar p="0" h="100%" minH="100vh" backgroundColor={"gray.800"} borderRightWidth={"0"}>
           <SidebarSection aria-label="Main">
             <NavGroup p=".5rem">
-              <FiltersBar clips={clips} setClips={setClips}/>
+              <FiltersBar setLoading={setLoading} clips={clips} setClips={setClips}/>
             </NavGroup>
           </SidebarSection>
           <SidebarToggleButton  bgColor={"purple.300"} ml=".2rem"/>
         </Sidebar>
       }
-      children={<ClipList clips={clips}/>}
+      children={<ClipList isLoading={isLoading} clips={clips}/>}
     />
   </SaasProvider>
   );

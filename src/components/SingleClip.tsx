@@ -27,7 +27,7 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
       <Flex
         shadow={"xl"}
         rounded={"md"}
-        flexDirection={"column"}
+        flexDirection={"row"}
         backgroundColor={"black"}
         pb={[".5rem", ".5rem", "0", "0", "0"]}
         ringColor={"teal.200"}
