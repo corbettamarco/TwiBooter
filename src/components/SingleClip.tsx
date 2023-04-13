@@ -62,7 +62,7 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
             <Text maxW={"50%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.streamer.displayName}</Text>
           </Flex>
           <Flex direction={"row"} alignItems={"center"} gap={2} >
-            <Image w={"36px"} minW={"36px"} height={"36px"} src={clip.immagine_categoria} ></Image>
+            <Image w={"32px"} minW={"32px"} height={"36px"} src={clip.immagine_categoria} ></Image>
             <Text maxW={"100%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.titolo}</Text>
           </Flex>
           </Flex>
