@@ -62,8 +62,8 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
     setValue("languages", selectedLanguages);
   }, [selectedLanguages, setValue, tags]);
 
-  return (<Box >
-    <form onSubmit={handleSubmit(onSubmit)}>
+  return (<Box textColor={"white"}>
+    <form onSubmit={handleSubmit(onSubmit)} >
       <Heading
         verticalAlign={"center"}
         fontStyle={"italic"}
