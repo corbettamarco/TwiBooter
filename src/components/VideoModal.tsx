@@ -1,13 +1,8 @@
 import {
-  Button,
-  Center,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+  ModalOverlay
 } from "@chakra-ui/react";
 import { ClipType } from "../types/ClipType";
 
@@ -28,22 +23,20 @@ export const VideoModal = ({
 }: VideoModalProp) => {
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size={"full"}>
+      <Modal isOpen={isOpen} onClose={onClose}  size={"2xl"} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{clip.titolo}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Center>
-              <iframe src={`https://clips.twitch.tv/embed?clip=${clip.slug}&parent=${amplify}`} frameBorder="0" allowFullScreen={true} scrolling="no" height="1280" width="720" title="videoModal"/>
-            </Center>
+          <ModalBody objectFit={"fill"} p="0">
+              <iframe
+                src={`https://clips.twitch.tv/embed?clip=${clip.slug}&parent=${amplify}`}
+                frameBorder="0"
+                allowFullScreen={true}
+                scrolling="no"
+                title="videoModal"
+                width="100%"
+                style={{aspectRatio:16/9}}
+              />
           </ModalBody>
-
-          <ModalFooter>
-            <Button size={"lg"} colorScheme="purple" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
