@@ -1,5 +1,5 @@
 import { WarningIcon } from "@chakra-ui/icons";
-import { Center, Heading, Spinner, VStack, Wrap } from "@chakra-ui/react";
+import { Center, Spinner, VStack, Wrap } from "@chakra-ui/react";
 import { ClipType } from "../types/ClipType";
 import { SingleClip } from "./SingleClip";
 
@@ -16,15 +16,8 @@ export const ClipList = ({ clips, isLoading }: ClipListProps) => {
       p=".5rem"
       bg={"linear-gradient(0deg, rgba(0,64,170,1) 0%, rgba(130,26,161,1) 100%)"}
     >
-      <Heading
-        my="1rem"
-        fontWeight={"extrabold"}
-        textColor={"white"}
-        fontStyle={"italic"}
-      >
-        RESULTS
-      </Heading>
-      <Center m="1rem" mt={"4rem"}>
+      
+      <Center m="1rem" >
         {isLoading ? (
           <Spinner />
         ) : clips.length > 0 ? (

@@ -20,6 +20,7 @@ type SingleClipProp = {
 };
 
 export const SingleClip = ({ clip }: SingleClipProp) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hover, setHover] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   console.log(clip.anteprima_clip);
