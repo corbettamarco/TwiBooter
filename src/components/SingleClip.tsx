@@ -1,21 +1,17 @@
-import { CalendarIcon, TimeIcon, ViewIcon } from "@chakra-ui/icons";
+import { TimeIcon, ViewIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
   Flex,
   HStack,
-  Heading,
-  Image,
   Link,
-  Spacer,
-  Stack,
   Tag,
   TagLabel,
   Text,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
-import { ClipType } from "../types/ClipType";
 import { useState } from "react";
+import { ClipType } from "../types/ClipType";
 import { VideoModal } from "./VideoModal";
 
 type SingleClipProp = {
