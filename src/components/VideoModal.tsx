@@ -1,9 +1,8 @@
 import {
-  Box,
   Modal,
   ModalBody,
   ModalContent,
-  ModalOverlay,
+  ModalOverlay
 } from "@chakra-ui/react";
 import { ClipType } from "../types/ClipType";
 
