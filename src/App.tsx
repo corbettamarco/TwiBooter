@@ -24,7 +24,7 @@ export const App = () => {
               <FiltersBar setLoading={setLoading} clips={clips} setClips={setClips}/>
             </NavGroup>
           </SidebarSection>
-          <SidebarToggleButton  bgColor={"purple.300"} ml=".2rem"/>
+          <SidebarToggleButton _hover={{bgColor: "purple.100"}}  bgColor={"purple.300"} ml=".2rem"/>
         </Sidebar>
       }
       children={<ClipList isLoading={isLoading} clips={clips}/>}

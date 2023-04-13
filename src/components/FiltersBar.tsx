@@ -36,6 +36,7 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([
     langOptions[0],
   ]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [inputValue, setInputValue] = useState("")
 
   const handleTagsChange = useCallback(
