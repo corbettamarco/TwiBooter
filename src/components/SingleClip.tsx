@@ -8,7 +8,8 @@ import {
   Tag,
   TagLabel,
   Text,
-  useDisclosure
+  useDisclosure,
+  Image
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ClipType } from "../types/ClipType";
