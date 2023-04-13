@@ -5,17 +5,18 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
+  Input,
   Select,
   Stack,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { SyntheticEvent, useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import "../styles.css";
+import { ClipType } from "../types/ClipType";
 import { Searchtype } from "../types/SearchType";
 import ChakraTagInput from "./ChakraTagInput";
 import MultiSelectMenu from "./MultiselectMenu";
-import { ClipType } from "../types/ClipType";
-import axios from "axios";
-
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 const langOptions = ["IT", "EN", "FR"];
 type FiltersBarType = {
@@ -35,6 +36,7 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([
     langOptions[0],
   ]);
+  const [inputValue, setInputValue] = useState("")
 
   const handleTagsChange = useCallback(
     (event: SyntheticEvent, tags: string[]) => {
@@ -83,15 +85,15 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
       >
         <FormControl isInvalid={errors.game ? true : false} isRequired>
           <FormLabel fontWeight={"bold"}>Game</FormLabel>
-          <Select
+          <Input
             placeholder="Select a Game"
             {...register("game")}
-            bgColor={"gray.800"}
-            textColor={"black"}
+            bgColor={"gray.700"}
+            textColor={"#9146FF"}
             shadow={"lg"}
+            onChange={(e)=>setInputValue(e.target.value)}
           >
-            <option value="VALORANT"> Valorant </option>
-          </Select>
+          </Input>
           <FormErrorMessage>
             {errors.game && errors.game.message}
           </FormErrorMessage>
@@ -101,8 +103,8 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
           <Select
             defaultValue={10}
             {...register("limit", { valueAsNumber: true })}
-            bgColor={"gray.800"}
-            textColor={"black"}
+            bgColor={"gray.700"}
+            textColor={"#9146FF"}
             shadow={"lg"}
           >
             <option value={10}> 10 </option>
@@ -118,8 +120,8 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
           <Select
             defaultValue={"ALL_TIME"}
             {...register("filter")}
-            bgColor={"gray.800"}
-            textColor={"black"}
+            bgColor={"gray.700"}
+            textColor={"#9146FF"}
             shadow={"lg"}
           >
             <option value="LAST_DAY">Last Day</option>
