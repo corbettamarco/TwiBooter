@@ -59,15 +59,15 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
               </TagLabel>
             </Tag>
           </HStack>
-          <Flex direction={"column"} >
-          <HStack >
+          <Flex direction={"column"} mt={10} gap={1}>
+          <Flex direction={"row"} alignItems={"center"} gap={2}>
             <Avatar size={"sm"} src={clip.streamer.profileImageURL}></Avatar>
             <Text maxW={"50%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.streamer.displayName}</Text>
-          </HStack>
-          <HStack >
+          </Flex>
+          <Flex direction={"row"} alignItems={"center"} gap={2}>
             <Avatar size={"sm"} src={clip.immagine_categoria}></Avatar>
             <Text maxW={"100%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.titolo}</Text>
-          </HStack>
+          </Flex>
           </Flex>
           </Box>
         </Link>
