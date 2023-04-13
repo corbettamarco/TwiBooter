@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -33,7 +34,9 @@ export const VideoModal = ({
           <ModalHeader>{clip.titolo}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <iframe src={`https://clips.twitch.tv/embed?clip=${clip.slug}&parent=${amplify}`} frameBorder="0" allowFullScreen={true} scrolling="no" height="378" width="620" title="videoModal"/>
+            <Center>
+              <iframe src={`https://clips.twitch.tv/embed?clip=${clip.slug}&parent=${amplify}`} frameBorder="0" allowFullScreen={true} scrolling="no" height="1280" width="720" title="videoModal"/>
+            </Center>
           </ModalBody>
 
           <ModalFooter>
