@@ -87,7 +87,7 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
             placeholder="Select a Game"
             {...register("game")}
             bgColor={"gray.800"}
-            textColor={"white"}
+            textColor={"black"}
             shadow={"lg"}
           >
             <option value="VALORANT"> Valorant </option>
@@ -102,7 +102,7 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
             defaultValue={10}
             {...register("limit", { valueAsNumber: true })}
             bgColor={"gray.800"}
-            textColor={"white"}
+            textColor={"black"}
             shadow={"lg"}
           >
             <option value={10}> 10 </option>
@@ -119,7 +119,7 @@ const FiltersBar = ({ clips, setClips , setLoading}: FiltersBarType) => {
             defaultValue={"ALL_TIME"}
             {...register("filter")}
             bgColor={"gray.800"}
-            textColor={"white"}
+            textColor={"black"}
             shadow={"lg"}
           >
             <option value="LAST_DAY">Last Day</option>
