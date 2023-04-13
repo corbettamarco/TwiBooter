@@ -1,11 +1,5 @@
 import { WarningIcon } from "@chakra-ui/icons";
-import {
-  Center,
-  Heading,
-  SimpleGrid,
-  Spinner,
-  VStack
-} from "@chakra-ui/react";
+import { Center, Heading, SimpleGrid, Spinner, VStack } from "@chakra-ui/react";
 import { ClipType } from "../types/ClipType";
 import { SingleClip } from "./SingleClip";
 
@@ -33,16 +27,14 @@ export const ClipList = ({ clips, isLoading }: ClipListProps) => {
       <Center m="1rem" mt={"4rem"}>
         {isLoading ? (
           <Spinner />
-        ) : (
+        ) : clips.length > 0 ? (
           <SimpleGrid gap={"2rem"} columns={[1, 2, 2, 2, 3]} mb="1rem">
-            {clips.length > 0 &&
-              clips.map((clip: ClipType, index: number) => {
-                return <SingleClip key={index} clip={clip} />;
-              })}
+            {clips.map((clip: ClipType, index: number) => {
+              return <SingleClip key={index} clip={clip} />;
+            })}
           </SimpleGrid>
-        )}
-        {clips.length === 0 && (
-          <WarningIcon fontSize={"8rem"} mt="40vh" mr="4rem" />
+        ) : (
+          !isLoading && <WarningIcon fontSize={"8rem"} mt="40vh" />
         )}
       </Center>
     </VStack>
