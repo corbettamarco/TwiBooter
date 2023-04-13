@@ -1,5 +1,7 @@
-import { CalendarIcon, TimeIcon } from "@chakra-ui/icons";
+import { CalendarIcon, TimeIcon, ViewIcon } from "@chakra-ui/icons";
 import {
+  Avatar,
+  Box,
   Flex,
   HStack,
   Heading,
@@ -7,6 +9,8 @@ import {
   Link,
   Spacer,
   Stack,
+  Tag,
+  TagLabel,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -21,7 +25,7 @@ type SingleClipProp = {
 export const SingleClip = ({ clip }: SingleClipProp) => {
   const [hover, setHover] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  console.log(clip.anteprima_clip);
   return (
     <>
       <Flex
@@ -30,74 +34,42 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
         flexDirection={"row"}
         backgroundColor={"black"}
         pb={[".5rem", ".5rem", "0", "0", "0"]}
-        ringColor={"teal.200"}
+        ringColor={"white"}
         ring={"2px"}
-        h={["25rem", "25rem", "16rem", "16rem", "16rem"]}
+        w={"260px"}
+        h={"147px"}
         onMouseEnter={(e: React.MouseEvent) => setHover(true)}
         onMouseLeave={(e: React.MouseEvent) => setHover(false)}
+        bgImage={`url(${clip.anteprima_clip})`}
+        bgSize={"contain"}
       >
-        <Link onClick={onOpen}>
-          <HStack>
-            <Image
-              rounded={"md"}
-              boxSize={"3rem"}
-              src={clip.streamer.profileImageURL}
-            ></Image>
-            <Text fontWeight={"bold"} textColor={"white"}>
-              {clip.streamer.displayName}
-            </Text>
-            <Spacer />
-            <Image
-              rounded={"md"}
-              boxSize={"3rem"}
-              src={clip.immagine_categoria}
-            ></Image>
+        <Link onClick={onOpen} w={"full"}>
+          <Box w={"full"} h={"full"} p={3}>
+          <HStack justifyContent={"space-between"} >
+            <Tag size="sm" bgColor={"black"} borderRadius="full">
+              <ViewIcon textColor={"white"} mr={1}></ViewIcon>
+              <TagLabel textColor={"white"} fontWeight={"bold"}>
+                {clip.visualizzazioni}
+              </TagLabel>
+            </Tag>
+            <Tag size="sm" bgColor={"black"} borderRadius="full">
+            <TimeIcon textColor={"white"} mr={1}></TimeIcon>
+              <TagLabel textColor={"white"} fontWeight={"bold"}>
+                {clip.durata}
+              </TagLabel>
+            </Tag>
           </HStack>
-          <Flex
-            mt="1rem"
-            gap={".5rem"}
-            flexDirection={["column", "column", "row", "row", "row"]}
-          >
-            <Image
-              rounded={"md"}
-              src={!hover ? clip.anteprima_clip : clip.url}
-              w={["100%", "100%", "60%", "60%", "60%"]}
-              fallbackSrc="https://clips-media-assets2.twitch.tv/AfR1v3qWNJSjkidwKZGOJg/AT-cm%7CAfR1v3qWNJSjkidwKZGOJg-preview-260x147.jpg"
-            ></Image>
-            <Flex
-              ml={[".5rem", ".5rem", ".5rem", "0", "0"]}
-              w="inherit"
-              flexDirection={"column"}
-              overflow={"hidden"}
-            >
-              <Heading
-                h={["4rem", "4rem", "8rem", "8rem", "8rem"]}
-                mr=".4rem"
-                fontSize={"md"}
-                color={"white"}
-                textOverflow={"ellipsis"}
-                overflow={"hidden"}
-                w="inherit"
-              >
-                {clip.titolo}
-              </Heading>
-              <Stack
-                my=".5rem"
-                fontStyle={"italic"}
-                fontSize={"sm"}
-                textColor={"white"}
-              >
-                <Text>
-                  <CalendarIcon mr=".5rem" />
-                  {clip.data_creazione.split("T")[0]}
-                </Text>
-                <Text>
-                  <TimeIcon style={{ marginRight: ".5rem" }} />
-                  {clip.data_creazione.split("T")[1].replace("Z", "")}
-                </Text>
-              </Stack>
-            </Flex>
+          <Flex direction={"column"} >
+          <HStack >
+            <Avatar size={"sm"} src={clip.streamer.profileImageURL}></Avatar>
+            <Text maxW={"50%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.streamer.displayName}</Text>
+          </HStack>
+          <HStack >
+            <Avatar size={"sm"} src={clip.immagine_categoria}></Avatar>
+            <Text maxW={"100%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.titolo}</Text>
+          </HStack>
           </Flex>
+          </Box>
         </Link>
       </Flex>
       <VideoModal
