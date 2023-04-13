@@ -4,12 +4,12 @@ import {
   Box,
   Flex,
   HStack,
+  Image,
   Link,
   Tag,
   TagLabel,
   Text,
-  useDisclosure,
-  Image
+  useDisclosure
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ClipType } from "../types/ClipType";
@@ -26,6 +26,11 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
   return (
     <>
       <Flex
+        _hover={{
+          textDecoration: "none",
+          transform: "scale(1.10)",
+          transition: "0.3s",
+        }}
         shadow={"xl"}
         rounded={"md"}
         flexDirection={"row"}
@@ -40,32 +45,56 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
         bgImage={`url(${clip.anteprima_clip})`}
         bgSize={"contain"}
       >
-        <Link onClick={onOpen} w={"full"}>
+        <Link _hover={{ textDecoration: "none" }} onClick={onOpen} w={"full"}>
           <Box w={"full"} h={"full"} p={3}>
-          <HStack justifyContent={"space-between"} >
-            <Tag size="sm" bgColor={"black"} borderRadius="full">
-              <ViewIcon textColor={"white"} mr={1}></ViewIcon>
-              <TagLabel textColor={"white"} fontWeight={"bold"}>
-                {clip.visualizzazioni}
-              </TagLabel>
-            </Tag>
-            <Tag size="sm" bgColor={"black"} borderRadius="full">
-            <TimeIcon textColor={"white"} mr={1}></TimeIcon>
-              <TagLabel textColor={"white"} fontWeight={"bold"}>
-                {clip.durata}
-              </TagLabel>
-            </Tag>
-          </HStack>
-          <Flex direction={"column"} mt={10} gap={1}>
-          <Flex direction={"row"} alignItems={"center"} gap={2}>
-            <Avatar size={"sm"} src={clip.streamer.profileImageURL}></Avatar>
-            <Text maxW={"50%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.streamer.displayName}</Text>
-          </Flex>
-          <Flex direction={"row"} alignItems={"center"} gap={2} >
-            <Image w={"36px"} minW={"36px"} height={"36px"} src={clip.immagine_categoria} ></Image>
-            <Text maxW={"100%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.titolo}</Text>
-          </Flex>
-          </Flex>
+            <HStack justifyContent={"space-between"}>
+              <Tag size="sm" bgColor={"black"} borderRadius="full">
+                <ViewIcon textColor={"white"} mr={1}></ViewIcon>
+                <TagLabel textColor={"white"} fontWeight={"bold"}>
+                  {clip.visualizzazioni}
+                </TagLabel>
+              </Tag>
+              <Tag size="sm" bgColor={"black"} borderRadius="full">
+                <TimeIcon textColor={"white"} mr={1}></TimeIcon>
+                <TagLabel textColor={"white"} fontWeight={"bold"}>
+                  {clip.durata}
+                </TagLabel>
+              </Tag>
+            </HStack>
+            <Flex direction={"column"} mt={10} gap={1}>
+              <Flex direction={"row"} alignItems={"center"} gap={2}>
+                <Avatar
+                  size={"sm"}
+                  src={clip.streamer.profileImageURL}
+                ></Avatar>
+                <Text
+                  maxW={"50%"}
+                  fontSize={"sm"}
+                  noOfLines={1}
+                  textColor={"white"}
+                  fontWeight={"bold"}
+                >
+                  {clip.streamer.displayName}
+                </Text>
+              </Flex>
+              <Flex direction={"row"} alignItems={"center"} gap={2}>
+                <Image
+                  w={"36px"}
+                  minW={"36px"}
+                  height={"36px"}
+                  src={clip.immagine_categoria}
+                ></Image>
+                <Text
+                  maxW={"100%"}
+                  fontSize={"sm"}
+                  noOfLines={1}
+                  textColor={"white"}
+                  fontWeight={"bold"}
+                >
+                  {clip.titolo}
+                </Text>
+              </Flex>
+            </Flex>
           </Box>
         </Link>
       </Flex>
