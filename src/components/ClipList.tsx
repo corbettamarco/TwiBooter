@@ -1,12 +1,10 @@
-import { InfoIcon, WarningIcon } from "@chakra-ui/icons";
+import { WarningIcon } from "@chakra-ui/icons";
 import {
-  AlertIcon,
-  Box,
   Center,
   Heading,
   SimpleGrid,
   Spinner,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 import { ClipType } from "../types/ClipType";
 import { SingleClip } from "./SingleClip";
