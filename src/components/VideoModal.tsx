@@ -33,7 +33,7 @@ export const VideoModal = ({
           <ModalHeader>{clip.titolo}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <iframe src={`https://clips.twitch.tv/embed?clip=${clip.slug}&parent=${amplify}`}/>
+            <iframe src={`https://clips.twitch.tv/embed?clip=${clip.slug}&parent=${amplify}`} frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"/>
           </ModalBody>
 
           <ModalFooter>
