@@ -25,7 +25,7 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
   console.log(clip.anteprima_clip);
   return (
     <>
-      <Flex
+       <Flex
         _hover={{
           textDecoration: "none",
           transform: "scale(1.10)",
