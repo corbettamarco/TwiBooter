@@ -23,7 +23,6 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hover, setHover] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log(clip.anteprima_clip);
   return (
     <>
        <Flex
@@ -64,8 +63,8 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
           </HStack>
           <Flex direction={"column"} mt={10} gap={1}>
           <Flex direction={"row"} alignItems={"center"} gap={2}>
-            <Avatar size={"sm"} src={clip.streamer.profileImageURL}></Avatar>
-            <Text maxW={"50%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.streamer.displayName}</Text>
+            <Avatar size={"sm"} src={clip.streamer !== null ? clip.streamer.profileImageURL : "" }></Avatar>
+            <Text maxW={"50%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.streamer !== null ?  clip.streamer.displayName : ""}</Text>
           </Flex>
           <Flex direction={"row"} alignItems={"center"} gap={2} >
             <Image w={"32px"} minW={"32px"} height={"36px"} src={clip.immagine_categoria} ></Image>

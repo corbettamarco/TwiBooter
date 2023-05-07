@@ -22,7 +22,7 @@ export const ClipList = ({ clips, isLoading }: ClipListProps) => {
           <Spinner />
         ) : clips.length > 0 ? (
           <Wrap  spacing={"2rem"} p="1rem" justify={"center"}>
-            {clips.map((clip: ClipType, index: number) => {
+            {clips && clips.map((clip: ClipType, index: number) => {
               return <SingleClip key={index} clip={clip} />;
             })}
           </Wrap>
