@@ -13,7 +13,7 @@ type VideoModalProp = {
   onClose: () => void;
 };
 
-const amplify = "master.d1afh24azjts0l.amplifyapp.com";
+const amplify = "master.d2e8ee307d6s2i.amplifyapp.com";
 
 export const VideoModal = ({
   clip,
