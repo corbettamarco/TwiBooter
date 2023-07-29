@@ -42,7 +42,7 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
         h={"147px"}
         onMouseEnter={(e: React.MouseEvent) => setHover(true)}
         onMouseLeave={(e: React.MouseEvent) => setHover(false)}
-        bgImage={`url(${clip.anteprima_clip})`}
+        bgImage={`url(${clip.thumbnail_url})`}
         bgSize={"contain"}
       >
         <Link _hover={{ textDecoration: "none" }} onClick={onOpen} w={"full"}>
@@ -51,24 +51,24 @@ export const SingleClip = ({ clip }: SingleClipProp) => {
             <Tag size="sm" bgColor={"black"} borderRadius="full">
               <ViewIcon textColor={"white"} mr={1}></ViewIcon>
               <TagLabel textColor={"white"} fontWeight={"bold"}>
-                {clip.visualizzazioni}
+                {clip.viewCount}
               </TagLabel>
             </Tag>
             <Tag size="sm" bgColor={"black"} borderRadius="full">
             <TimeIcon textColor={"white"} mr={1}></TimeIcon>
               <TagLabel textColor={"white"} fontWeight={"bold"}>
-                {clip.durata}
+                {clip.duration_seconds}
               </TagLabel>
             </Tag>
           </HStack>
           <Flex direction={"column"} mt={10} gap={1}>
           <Flex direction={"row"} alignItems={"center"} gap={2}>
-            <Avatar size={"sm"} src={clip.streamer !== null ? clip.streamer.profileImageURL : "" }></Avatar>
-            <Text maxW={"50%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.streamer !== null ?  clip.streamer.displayName : ""}</Text>
+            <Avatar size={"sm"} src={clip.broadcaster !== null ? clip.broadcaster.profileImageURL : "" }></Avatar>
+            <Text maxW={"50%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.broadcaster !== null ?  clip.broadcaster.displayName : ""}</Text>
           </Flex>
           <Flex direction={"row"} alignItems={"center"} gap={2} >
-            <Image w={"32px"} minW={"32px"} height={"36px"} src={clip.immagine_categoria} ></Image>
-            <Text maxW={"100%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.titolo}</Text>
+            <Image w={"32px"} minW={"32px"} height={"36px"} src={clip.box_art_url} ></Image>
+            <Text maxW={"100%"} fontSize={"sm"} noOfLines={1} textColor={"white"} fontWeight={"bold"}>{clip.title}</Text>
           </Flex>
           </Flex>
           </Box>

@@ -1,16 +1,16 @@
 export type ClipType = {
-    titolo: string,
-    streamer: StreamerType,
+    title: string,
+    broadcaster: BroadcasterType,
     slug: string,
     url: string, 
-    durata: number,
-    anteprima_clip: string,
+    duration_seconds: number,
+    thumbnail_url: string,
     data_creazione: string,
-    immagine_categoria: string,
-    visualizzazioni:string
+    box_art_url: string,
+    viewCount:string
 }
 
-type StreamerType = {
+type BroadcasterType = {
     id : number,
     login: string,
     displayName: string,
