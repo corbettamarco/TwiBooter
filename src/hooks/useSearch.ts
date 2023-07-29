@@ -26,6 +26,7 @@ export const useSearch = () => {
 
     useEffect(() => {
         onSubmit(defaultSearch);
+        // eslint-disable-next-line
     }, []);
 
 

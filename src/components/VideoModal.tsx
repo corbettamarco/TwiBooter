@@ -13,7 +13,7 @@ type VideoModalProp = {
   onClose: () => void;
 };
 
-const amplify = "master.d2e8ee307d6s2i.amplifyapp.com";
+const render = "https://twibooter.onrender.com";
 
 export const VideoModal = ({
   clip,
@@ -28,7 +28,7 @@ export const VideoModal = ({
         <ModalContent>
           <ModalBody objectFit={"fill"} p="0">
               <iframe
-                src={`https://clips.twitch.tv/embed?clip=${clip.slug}&parent=${amplify}`}
+                src={`https://clips.twitch.tv/embed?clip=${clip.slug}&parent=${render}`}
                 frameBorder="0"
                 allowFullScreen={true}
                 scrolling="no"
