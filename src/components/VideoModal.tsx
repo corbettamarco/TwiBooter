@@ -13,7 +13,7 @@ type VideoModalProp = {
   onClose: () => void;
 };
 
-const render = "https://twibooter.onrender.com";
+const render = "https://twi-booter.vercel.app/";
 
 export const VideoModal = ({
   clip,
