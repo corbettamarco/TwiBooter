@@ -1,3 +1,4 @@
+import { SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -7,6 +8,7 @@ import {
   Heading,
   Input,
   Select,
+  Spacer,
   Stack,
 } from "@chakra-ui/react";
 import { SyntheticEvent, useCallback, useEffect, useState } from "react";
@@ -23,7 +25,6 @@ type FiltersBarType = {
 };
 
 const FiltersBar = ({ onSubmit }: FiltersBarType) => {
-
   const {
     register,
     handleSubmit,
@@ -31,7 +32,6 @@ const FiltersBar = ({ onSubmit }: FiltersBarType) => {
     setValue,
   } = useForm<Searchtype>();
 
- 
   const [tags, setTags] = useState<string[] | undefined>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([
     langOptions[1],
@@ -60,6 +60,7 @@ const FiltersBar = ({ onSubmit }: FiltersBarType) => {
           textColor={"#9146FF"}
           textAlign={"center"}
           pt=".5rem"
+          ml={"1rem"}
         >
           TwiBooter
         </Heading>
@@ -71,7 +72,7 @@ const FiltersBar = ({ onSubmit }: FiltersBarType) => {
           gap={"1rem"}
           p=".8rem"
         >
-          <FormControl isInvalid={errors.game ? true : false} isRequired>
+          <FormControl mt={'1rem'} isInvalid={errors.game ? true : false} isRequired>
             <FormLabel fontWeight={"bold"}>Game</FormLabel>
             <Input
               placeholder="Select a Game"
@@ -142,8 +143,8 @@ const FiltersBar = ({ onSubmit }: FiltersBarType) => {
               {errors.limit && errors.limit.message}
             </FormErrorMessage>
           </FormControl>
-          <Button ml="3.2rem" type="submit" bgColor={"#9146FF"}>
-            Search
+          <Button leftIcon={<SearchIcon /> } ml="3.2rem" type="submit" bgColor={"yellow.400"}>
+          Search 
           </Button>
         </Stack>
       </form>

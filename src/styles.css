@@ -1,3 +1,75 @@
-#option{ /*dropdown*/
-    background-color: #1A202C;
+#option {
+  /*dropdown*/
+  background-color: #1a202c;
+}
+
+.beacon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #3032A7;
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+}
+.beacon:before {
+  position: absolute;
+  content: "";
+  height: 2em;
+  width: 2em;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 0px 0px 4px 4px #e0f80a;
+  -webkit-animation: active 2s infinite linear;
+  animation: active 2s infinite linear;
+}
+
+@-webkit-keyframes grow {
+  0% {
+    -webkit-transform: scale(0.1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes active {
+  0% {
+    -webkit-transform: scale(0.1);
+    opacity: 1;
+  }
+  70% {
+    -webkit-transform: scale(2.5);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes active {
+  0% {
+    transform: scale(0.1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
