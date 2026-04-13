@@ -1,17 +1,15 @@
 import axios from "axios";
 import { Searchtype } from "../types/SearchType";
 
-declare var process: {
-  env: {
-    REACT_APP_API_KEY: string;
-  };
-};
 export const getData = async (values: Searchtype) => {
+  const apiUrl = import.meta.env.VITE_API_KEY;
+
+  if (!apiUrl) {
+    throw new Error("Missing VITE_API_KEY environment variable.");
+  }
+
   try {
-    const result = await axios.post(
-        process.env.REACT_APP_API_KEY,
-      values
-    );
+    const result = await axios.post(apiUrl, values);
     console.log(result.data)
     return result;
   } catch (error: any) {

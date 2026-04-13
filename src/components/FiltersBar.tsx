@@ -8,8 +8,7 @@ import {
   Heading,
   Input,
   Select,
-  Spacer,
-  Stack,
+  Stack
 } from "@chakra-ui/react";
 import { SyntheticEvent, useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
